@@ -1,0 +1,29 @@
+1) Nos enlazamos al div contenedor de todos los elementos HTML del cotizador, y con la etiqueta span cuyo id="valorPoliza".
+    const divPrincipal = document.querySelector("div.div-quote")
+    const spanPoliza = document.querySelector("span#valorPoliza")
+
+2) A partir de aquí, trabajamos sobre el evento 'onclick' de Botón Cotizar:
+
+Agregamos la clase CSS 'div-blocked' al div contenedor:
+    divPrincipal.classList.add("div-blocked")
+
+Luego escribimos en la propiedad innerHTML de botón cotizar, un tag <img> con la ruta relativa hacia el gif animado.
+    btnCotizar.innerHTML = '<img src="images/animation.gif">'
+
+
+3) El manejo de setTimeout() requiere que definamos un tiempo específico en milisegundos. 1000 milisegundos = 1 segundo. Pasado dicho tiempo ejecutará el código que definamos dentro de su cuerpo.
+
+    setTimeout(() => {
+        if (obtenerFMPropiedad() && obtenerFMUbicacion() && parseInt(metros2.value)) {
+            let resultado = obtenerFMPropiedad() * obtenerFMUbicacion() * parseInt(metros2.value) * costoM2
+            spanPoliza.textContent = resultado.toFixed(2)
+        } else {
+            console.warn("Hubo un error en los datos ingresados.")
+        }
+
+    }, 3500)
+
+4) Finalmente, dentro del temporizador setTimeout(), luego de procesar y calcular el valor de la póliza, quitamos la clase CSS previamente agregada y restituimos el texto del botón Cotizar.
+
+    divPrincipal.classList.remove("div-blocked")
+    btnCotizar.textContent = 'cotizar'
